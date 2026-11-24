@@ -205,8 +205,8 @@ const QUE_PAGE = () => document.body.dataset.pair ? 'read-with-que.html' : 'que-
 const chgBtn = () => document.body.dataset.q6 || document.body.dataset.h2 || document.body.dataset.brief2 ? '<button type="button" id="chg-toggle" aria-pressed="false">Changes vs original: off</button>' : '';
 const mockbar = (v) => document.body.dataset.pair ? `
   <div class="mockbar"><div class="wrap">
-    <strong>Mockup</strong>
-    <nav aria-label="Pages">${PAIR.map(([k, l]) => `<a href="${k}.html"${location.pathname.endsWith(`/${k}.html`) ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>
+    <strong>${location.pathname.includes('/equitech/') ? '<a class="mock-home" href="./">← Overview</a>' : 'Mockup'}</strong>
+    <nav aria-label="Pages">${PAIR.map(([k, l]) => `<a href="${k}.html"${/\/[^/]+$/.test(location.pathname) && location.pathname.replace(/\.html$/, '').endsWith(`/${k}`) ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>
     ${chgBtn()}
   </div></div>` : `
   <div class="mockbar"><div class="wrap">

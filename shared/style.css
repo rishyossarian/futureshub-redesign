@@ -873,3 +873,4 @@ body:is([data-q3], [data-h2]) .header .actions .btn-primary:hover { border-color
 body[data-q2]:not([data-q3]) #calendar { background: var(--surface-blue); }
 body[data-q2]:not([data-q3]) #que { background: var(--surface); }
 body[data-q2]:not([data-q3]) #impact { border-top: 1px solid var(--line); }
+.mockbar .mock-home { color: inherit; text-decoration: none; } .mockbar .mock-home:hover { text-decoration: underline; } /* back to rishita.net/equitech (25 Nov) */
