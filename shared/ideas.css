@@ -1,0 +1,67 @@
+/* Thumbnail ideas page. Loaded after style.css. */
+.idea-sec { max-width: var(--max); margin-inline: auto; padding: clamp(64px, 8vw, 104px) 24px; border-bottom: 1px solid var(--line); }
+.idea-tag { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; margin-bottom: 28px; font: 600 22px var(--display); color: var(--navy); }
+.idea-tag b { font: 500 13px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--white); background: var(--fh-blue); padding: 3px 10px; border-radius: var(--r-round); }
+.idea-tag span { flex-basis: 100%; font: 400 16px var(--sans); color: var(--faded); }
+.center { text-align: center; }
+.nx-when { display: block; font: 500 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--teal-text); }
+
+/* 2: poster wall */
+.idea-wall { position: relative; overflow: hidden; min-height: min(760px, 92vh); display: grid; align-items: center; background: #00182b; }
+.idea-wall::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, #00182bf2 20%, #00182bb3 55%, #00182b59); }
+.wall-text { position: relative; z-index: 1; display: grid; gap: 22px; justify-items: start; color: var(--white); padding-block: 96px; }
+.wall-text h1 { color: var(--white); font-size: clamp(44px, 6vw, 76px); max-width: 12ch; line-height: 1.05; }
+.wall-text .accent { color: #4fb3f0; }
+.wall-text .lede { color: #d4e3ee; max-width: 52ch; }
+.wall-text .idea-tag { color: var(--white); margin: 0; }
+.wall-text .idea-tag span { color: #b9cddc; }
+
+/* 7: next-up strip */
+.nextup2 { display: flex; align-items: center; gap: 16px; padding: 10px 20px 10px 10px; border-radius: 14px; background: var(--navy); color: #c9dbe8; }
+.nextup2 img { width: 48px; height: 64px; object-fit: cover; border-radius: 6px; }
+.nextup2 > span { display: grid; gap: 2px; }
+.nextup2 .nx-when { color: var(--mint); }
+.nextup2 strong { color: var(--white); font-size: 17px; }
+.nextup2 .nx-meta { font-size: 14px; }
+.nextup2 a { margin-left: auto; color: var(--mint); text-decoration: none; font-weight: 500; white-space: nowrap; }
+@media (max-width: 700px) { .nextup2 { flex-wrap: wrap; } .nextup2 a { margin-left: 64px; } }
+
+/* 5: nav dropdown with the next poster */
+.mega-demo { border-radius: 16px; background: var(--surface); box-shadow: 0 0 0 1px var(--line); padding-bottom: 32px; }
+.mega-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding: 18px 24px; border-bottom: 1px solid var(--line); font: 500 16px var(--sans); color: var(--navy); }
+.mega-bar .logo { width: 130px; margin-right: auto; }
+.mega-bar .on { color: var(--blue); }
+.mega { display: grid; grid-template-columns: 1fr 260px; gap: 8px; width: min(680px, calc(100% - 32px)); margin: 12px auto 0; padding: 12px; border-radius: 16px; background: var(--white); box-shadow: 0 24px 48px #0030521f, 0 0 0 1px var(--line); }
+.mega-list { display: grid; align-content: start; }
+.mega-list a { display: grid; gap: 2px; padding: 12px 14px; border-radius: 10px; text-decoration: none; color: var(--navy); }
+.mega-list a span { font-size: 14px; color: var(--faded); }
+.mega-list a:hover { background: var(--surface-blue); }
+.mega-next { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; padding: 12px; border-radius: 12px; background: var(--surface-blue); text-decoration: none; color: var(--navy); }
+.mega-next .poster-art, .series .poster-art, .fan .poster-art, .flip .poster-art { aspect-ratio: 3 / 4; border-radius: 8px; overflow: hidden; }
+.mega-next > span:last-child { display: grid; gap: 4px; }
+@media (max-width: 640px) { .mega { grid-template-columns: 1fr; } }
+
+/* 3: faculty fans */
+.fac-fans { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-bottom: 20px; }
+.fac-fan { display: grid; justify-items: center; gap: 6px; padding: 200px 28px 28px; border-radius: var(--r-main); background: var(--white); box-shadow: 0 0 0 1px var(--line); text-align: center; text-decoration: none; color: var(--navy); position: relative; overflow: hidden; }
+.fan { position: absolute; top: 28px; left: 50%; width: 0; }
+.fan > span { position: absolute; left: -60px; width: 120px; transform-origin: 50% 140%; transform: rotate(calc(var(--i) * 7deg)) translateX(calc(var(--i) * 18px)); transition: transform .35s; box-shadow: 0 10px 24px #0030522e; border-radius: 8px; }
+.fac-fan:hover .fan > span, .fac-fan:focus-visible .fan > span { transform: rotate(calc(var(--i) * 12deg)) translateX(calc(var(--i) * 70px)); }
+.fac-fan .avatar { position: relative; z-index: 1; box-shadow: 0 0 0 4px var(--white); margin-top: 12px; }
+.fac-fan strong { font-size: 20px; margin-top: 6px; }
+.fan-count { margin-top: 8px; font-weight: 500; color: var(--blue); }
+
+/* 4: deck in each box */
+
+/* 6: flip posters */
+.flips { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+.flip { border: 0; padding: 0; background: none; cursor: pointer; perspective: 1000px; aspect-ratio: 3 / 4; font: inherit; text-align: left; }
+.flip[aria-pressed="true"] .flip-in { transform: rotateY(180deg); }
+@media (hover: hover) { .flip:hover .flip-in { transform: rotateY(180deg); } }
+.flip:focus-visible { outline: 2px solid var(--fh-blue); outline-offset: 4px; border-radius: 10px; }
+.flip-face .poster-art { height: 100%; border-radius: 10px; }
+@media (prefers-reduced-motion: reduce) { .flip-in { transition: none; } .fan > span, .deck > span { transition: none; } }
+
+/* 8: series grid */
+.series-h { font: 500 13px var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--faded); margin: 28px 0 12px; }
+.series { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; }

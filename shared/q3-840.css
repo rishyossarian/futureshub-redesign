@@ -1,0 +1,152 @@
+/* Quill 3.0: mission first (Recurse, 80,000 Hours, ARENA, Hack Club). FuturesHub tokens only. */
+
+/* Mockup-only switcher: colours between sections and where the big numbers go */
+.q3-opts { position: fixed; z-index: 50; left: 16px; bottom: 16px; display: flex; gap: 4px; align-items: center; padding: 6px 12px; border: 1px dashed var(--line); border-radius: 99px; background: var(--white); box-shadow: 0 6px 20px #0030521f; font-size: 13px; color: var(--faded); }
+.q3-opts span { margin: 0 4px 0 8px; } .q3-opts span:first-child { margin-left: 0; }
+.q3-opts a { min-width: 28px; padding: 2px 6px; text-align: center; border-radius: 99px; color: var(--faded); text-decoration: none; }
+.q3-opts a[aria-current] { background: var(--navy); color: var(--white); font-weight: 500; }
+
+/* Hero: text left, one photo right */
+.q3-hero { padding-top: 40px; background: var(--white); }
+.q3-hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 24px 64px; align-items: center; }
+.q3-hero-text { display: grid; gap: 28px; justify-items: start; }
+.q3-hero h1 { font-size: clamp(38px, 3.9vw, 52px); }
+.q3-hero .lede { margin: 0; }
+.q3-hero-photo { width: 100%; height: 540px; object-fit: cover; border-radius: var(--r-main); }
+.q3-hero .marquee { margin-top: 56px; padding-block: 22px; background: var(--surface-blue); }
+
+/* Big proof numbers (option A under the hero, B in "Who's behind it", C beside the reasons) */
+.q3-big { display: flex; flex-wrap: wrap; gap: 24px 56px; margin: 0; }
+.q3-big dt { font: 600 clamp(48px, 6vw, 84px)/1 var(--display); color: var(--fh-blue); letter-spacing: -.02em; }
+.q3-big dd { margin: 8px 0 0; color: var(--faded); }
+.q3-nums { padding-block: 64px; } .q3-nums .muted { margin-top: 20px; }
+.q3-behind .q3-big { margin-top: 56px; }
+
+/* The mission sentence: the page turns navy while it holds the middle of the screen (equitechfutures.com/ventures) */
+.q3-intro { min-height: 80vh; display: grid; align-items: center; padding-block: 96px; background: var(--white); transition: background-color .5s ease; }
+.q3-intro h2 { max-width: 26ch; font-size: clamp(34px, 4.4vw, 60px); line-height: 1.15; transition: color .5s ease; }
+.q3-intro a { color: inherit; text-decoration: underline; text-decoration-color: var(--fh-blue); text-decoration-thickness: 4px; text-underline-offset: 8px; }
+.q3-intro a:hover { color: var(--fh-blue); }
+body.q3-dark .q3-intro { background: var(--navy); }
+body.q3-dark .q3-intro h2 { color: var(--white); }
+body.q3-dark .q3-intro a { text-decoration-color: var(--teal-light); }
+body.q3-dark .q3-intro a:hover { color: var(--teal-light); }
+
+/* Each reason: heading + line (numbers beside it in option C), then its offerings */
+.q3-reason-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 32px 64px; }
+.q3-reason-head > div { display: grid; gap: 16px; max-width: 760px; }
+.q3-reason-head .q3-big dt { font-size: clamp(40px, 4.5vw, 64px); }
+.q3-reason-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 48px; align-items: start; margin-top: 40px; }
+.q3-pick { display: grid; gap: 10px; justify-items: stretch; }
+.q3-pick button { display: grid; gap: 4px; padding: 18px 22px; text-align: left; font: 300 16px/1.45 var(--sans); color: var(--faded); background: var(--white); border: 1.5px solid var(--line); border-radius: 16px; cursor: pointer; }
+.q3-pick button strong { font: 600 20px var(--display); color: var(--navy); }
+.q3-pick button:hover { border-color: var(--navy); }
+.q3-pick button[aria-selected="true"] { border-color: var(--fh-blue); box-shadow: 0 8px 24px #0030520f; }
+.q3-library { justify-self: start; margin-top: 8px; }
+.q3-preview .mock { box-shadow: 0 18px 48px #0030521f; }
+.q3-case, .q3-persp { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.q3-case button, .q3-persp button { min-height: 40px; padding: 8px 14px; border: 1.5px solid var(--line); border-radius: var(--r-round); background: var(--white); color: var(--navy); font: 500 14px var(--sans); cursor: pointer; text-align: left; }
+.q3-case button:hover, .q3-persp button:hover { border-color: var(--navy); }
+.q3-case button[aria-pressed="true"], .q3-persp button[aria-pressed="true"] { border-color: var(--fh-blue); background: var(--surface-blue); }
+.q3-case { flex-direction: column; align-items: stretch; }
+.q3-say { margin: 4px 0 0; padding: 16px 20px; border-left: 3px solid var(--fh-blue); background: var(--surface-blue); border-radius: 0 12px 12px 0; font: 300 17px/1.5 var(--sans); font-style: italic; min-height: 128px; }
+
+/* People: two photo cards, then the faculty once, with "Book" on those who hold office hours */
+.q3-live { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+.q3-photo-card { position: relative; display: block; overflow: hidden; border-radius: var(--r-main); color: var(--white); text-decoration: none; aspect-ratio: 16 / 10; }
+.q3-photo-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.q3-photo-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 35%, #001a2ee6); }
+.q3-photo-card span { position: absolute; z-index: 1; inset: auto 0 0; display: grid; gap: 6px; padding: 28px; font-size: 16px; color: #dbe7f0; }
+.q3-photo-card strong { font: 600 28px var(--display); color: var(--white); }
+.q3-photo-card em { font-style: normal; font-weight: 500; color: var(--white); margin-top: 6px; }
+.q3-photo-card:hover img { transform: scale(1.04); }
+.q3-office { margin-top: 64px; }
+.q3-office h3 { font-size: 24px; } .q3-office h3 span { font: 300 18px var(--sans); color: var(--faded); }
+.q3-faculty { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 28px; }
+.q3-faculty .person { color: inherit; text-decoration: none; }
+.q3-faculty .person h4 { font-size: 17px; }
+.q3-face { position: relative; display: block; }
+.q3-face .photo { border-radius: 20px; }
+.q3-face b { position: absolute; left: 10px; bottom: 16px; padding: 4px 10px; border-radius: 99px; background: var(--white); font: 600 13px var(--sans); color: var(--teal-text); box-shadow: 0 4px 12px #00305226; }
+.q3-bookable:hover .photo { outline: 3px solid var(--fh-blue); outline-offset: 3px; }
+
+/* Build: apply with Que, then the challenge cards as whole-card links, all pictures in one grey */
+.q3-apply { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 48px; }
+.q3-apply > div:first-child { display: grid; gap: 14px; }
+.q3-apply h3 { font-size: 28px; }
+.q3-apply p { color: var(--faded); max-width: 46ch; }
+.q3-ch { margin-top: 56px; padding-top: 0; border-top: 0; }
+.q3-ch .ch-card { text-decoration: none; transition: transform .2s, box-shadow .2s; }
+.q3-ch .ch-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px #00305224; }
+.q3-ch .ch-card h4 span { color: var(--faded); transition: margin .2s; }
+.q3-ch .ch-card:hover h4 span { margin-left: 4px; color: var(--navy); }
+.q3-ch .ch-pic { filter: grayscale(1); }
+.q3-ch .ch-foot .chip-past { margin-left: auto; align-self: center; }
+
+/* Alumni: their own faces, a slow continuous stream that pauses on hover */
+.q3-stream { overflow: hidden; margin-top: 40px; -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.q3-stream-track { display: flex; gap: 24px; width: max-content; padding-block: 8px 24px; animation: q3-stream 80s linear infinite; }
+.q3-stream:hover .q3-stream-track { animation-play-state: paused; }
+@keyframes q3-stream { to { transform: translateX(calc(-50% - 12px)); } }
+.q3-alum { width: 380px; margin: 0; display: grid; grid-template-rows: auto 1fr auto; gap: 16px; padding: 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-main); }
+.q3-alum img { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; }
+.q3-alum blockquote { margin: 0; font: 300 17px/1.5 var(--sans); color: var(--navy); }
+.q3-alum figcaption { display: grid; gap: 2px; font-size: 14px; color: var(--faded); }
+.q3-alum strong { font-size: 16px; color: var(--navy); }
+
+.q3-beliefs ol { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.q3-beliefs li { display: grid; gap: 12px; align-content: start; padding-top: 20px; border-top: 2px solid var(--navy); }
+.q3-beliefs li > span { font: 600 15px var(--display); color: var(--fh-blue); }
+.q3-beliefs p { color: var(--faded); }
+
+.q3-faq dl { margin: 40px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 32px 64px; }
+.q3-faq dt { font: 600 20px var(--display); margin-bottom: 8px; }
+.q3-faq dd { margin: 0; color: var(--faded); max-width: 52ch; }
+
+/* Wave divider wherever the colour changes (her 80000hours.org pick): q3Wire sets --wave to the next section's colour */
+.q3-wave { position: relative; padding-bottom: 152px; }
+.q3-wave::after { content: ""; position: absolute; inset: auto 0 -1px; height: 72px; pointer-events: none; background: var(--wave, var(--surface));
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 72' preserveAspectRatio='none'%3E%3Cpath d='M0 30C320 78 760 -8 1440 40V72H0Z'/%3E%3C/svg%3E") 0 0 / 100% 100%;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 72' preserveAspectRatio='none'%3E%3Cpath d='M0 30C320 78 760 -8 1440 40V72H0Z'/%3E%3C/svg%3E") 0 0 / 100% 100%; }
+
+/* Calendar: navy around it, the calendar itself white as before */
+body[data-q3] #calendar { background: var(--navy); }
+body[data-q3] #calendar .evm-wrap { background: var(--white); border-radius: var(--r-main); padding: 40px; box-shadow: 0 30px 60px #0000004d; }
+
+/* Section colours, three options (?tone=): 1 Light (white and pale blue) · 2 Bands (Quill 2.0's blue, teal and navy) · 3 Tints (one pale colour per reason) */
+.q3-think, .q3-alumni, .q3-faq, .q3-ready, .q3-nums { background: var(--white); }
+#que, .q3-people, .q3-beliefs { background: var(--surface-blue); }
+.q3-build, .q3-behind { background: var(--surface); }
+body[data-tone="3"] .q3-think { background: #eaf3fb; }
+body[data-tone="3"] .q3-people { background: #e6f6f1; }
+body[data-tone="3"] .q3-build { background: #fbf4e6; }
+body[data-tone="3"] .q3-beliefs, body[data-tone="3"] #que { background: var(--white); }
+body[data-tone="2"] .q3-think { background: #0b6aa8; } body[data-tone="2"] .q3-people { background: var(--teal-text); } body[data-tone="2"] .q3-build { background: var(--navy); }
+body[data-tone="2"] .q3-reason h2, body[data-tone="2"] .q3-reason h3, body[data-tone="2"] .q3-reason h4:not(.ch-card h4), body[data-tone="2"] .q3-reason .accent, body[data-tone="2"] .q3-big dt { color: var(--white); }
+body[data-tone="2"] .q3-reason .lede, body[data-tone="2"] .q3-reason .cred, body[data-tone="2"] .q3-apply > div:first-child p, body[data-tone="2"] .q3-office h3 span, body[data-tone="2"] .q3-reason .q3-big dd { color: #d6e4ee; }
+body[data-tone="2"] .q3-library { color: var(--white); border-color: #ffffff80; }
+
+/* "Ready?": light, a QueBook crossing the wave above, Que perched on the footer edge like Hack Club's mascots */
+.q3-ready { position: relative; z-index: 2; padding-block: 56px 120px; }
+.q3-ready .wrap { position: relative; display: grid; grid-template-columns: 300px 1fr; justify-items: start; align-items: center; gap: 72px; }
+.q3-ready .wrap > div { display: grid; gap: 20px; justify-items: start; }
+.q3-ready .lede { margin: 0; }
+body[data-q3] .footer { position: relative; z-index: 1; }
+.q3-perch { position: absolute; right: 24px; bottom: -158px; }
+.q3-perch .que-mark-lg { width: 170px; height: auto; margin: 0; }
+.q3-perch .que-body path { stroke: var(--white); stroke-width: 7; paint-order: stroke; } /* outline: Que's navy half would vanish into the navy footer */
+.q3-book { width: 300px; margin-top: -170px; border-radius: 6px 14px 14px 6px; transform: rotate(-5deg); box-shadow: -10px 28px 60px #00000059; }
+.q3-behind h2 { max-width: 28ch; }
+.q3-behind .lede { margin-top: 16px; }
+
+@media (prefers-reduced-motion: reduce) { .q3-stream-track { animation: none; } .q3-stream { overflow-x: auto; } .q3-intro, .q3-intro h2 { transition: none; } }
+@media (max-width: 860px) {
+  .q3-hero .wrap, .q3-reason-grid, .q3-apply, .q3-faq dl, .q3-beliefs ol, .q3-live { grid-template-columns: 1fr; gap: 32px; }
+  .q3-hero-photo { height: 320px; }
+  .q3-intro { min-height: 60vh; }
+  .q3-faculty { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  .q3-alum { width: 300px; }
+  body[data-q3] #calendar .evm-wrap { padding: 20px 12px; }
+  .q3-opts { left: 8px; right: 8px; bottom: 8px; justify-content: center; }
+  .q3-ready .wrap { grid-template-columns: 1fr; gap: 32px; } .q3-book { width: 180px; margin-top: -110px; } .q3-perch { right: 0; bottom: -140px; } .q3-perch .que-mark-lg { width: 120px; }
+}

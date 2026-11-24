@@ -1,0 +1,28 @@
+/* Small responses everywhere, after equitechfutures.com/ideas (her ask, 25 Nov): its stylesheets show 0.2s colour, opacity and border changes on
+   every link, card title and button, a slower eased button, round arrow buttons that react, and a soft page transition. Loaded by quill-5.html, quill-6.html and que-2.html. No scroll-in reveal: removed 25 Nov ("too much motion"). */
+a, button { transition: color .2s, background-color .2s, border-color .2s, opacity .2s, box-shadow .25s, transform .25s cubic-bezier(.23, 1, .32, 1); }
+
+/* nav and "see all" links turn FuturesHub blue */
+.header .nav > a:hover, .header .menu > button:hover, .menu-panel a:hover, .menu-all:hover, .q-see-all:hover, .footer a:hover { color: var(--fh-blue); }
+
+/* buttons rise a little, press back down */
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn-primary:hover { box-shadow: 0 10px 22px #0670b84d; }
+
+/* round arrow buttons (alumni, calendar) fill navy */
+.tq-nav button:hover, .ev-nav:hover { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.tq-nav button:active, .ev-nav:active { transform: scale(.94); }
+
+/* cards: lift, a deeper shadow, and their title turns blue (the "card title" rule on the ideas page) */
+.q4-class, .q4-cohort, .ch-card, .q-topic, .q-f-card, .q3-faq dl > div, .tcard { transition: transform .3s cubic-bezier(.23, 1, .32, 1), box-shadow .3s, border-color .2s; }
+.q4-class:hover, .q4-cohort:hover, .ch-card:hover, .q3-faq dl > div:hover, .q-f-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px #00305224; }
+.tcard:hover { transform: translateY(-4px); box-shadow: 0 18px 40px #0030523d; }
+.q4-class strong, .q4-cohort strong, .ch-card h4, .q3-faq dt, .q-topic h3, .q-f-card h3, .q-f-card strong { transition: color .2s; }
+.q4-class:hover strong, .q4-cohort:hover strong, .ch-card:hover h4, .q3-faq dl > div:hover dt, .q-topic:hover h3, .q-f-card:hover h3, .q-f-card:hover strong { color: var(--fh-blue); }
+.q3-pick button:hover:not([aria-selected="true"]) { border-color: var(--fh-blue); color: var(--navy); transform: translateY(-1px); }
+
+/* keyboard focus is as visible as hover */
+:focus-visible { outline: 3px solid var(--fh-blue); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) { a, button { transition: color .2s, background-color .2s, border-color .2s; } .btn:hover, .q4-class:hover, .q4-cohort:hover, .ch-card:hover, .q-f-card:hover, .tcard:hover, .q3-faq dl > div:hover { transform: none; } }

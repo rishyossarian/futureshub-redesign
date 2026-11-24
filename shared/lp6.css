@@ -1,0 +1,94 @@
+/* FuturesHub LP6: Brilliant-inspired layout in FuturesHub colours and fonts. Loaded after style.css. */
+body.lp6 { background: #f2f6f9; }
+
+/* Floating pill header */
+.lp6 .header { background: transparent; border: 0; padding-top: 12px; }
+.lp6 .header .wrap { background: var(--white); border-radius: var(--r-round); padding: 8px 8px 8px 24px; box-shadow: 0 0 0 1px var(--line), 0 8px 24px #0030520f; }
+
+/* Chunky buttons that press down */
+.l6-btn { display: inline-block; font: 600 17px var(--sans); padding: 15px 30px; border-radius: var(--r-round); text-decoration: none; transition: transform .08s, box-shadow .08s; }
+.l6-btn:active { transform: translateY(3px); }
+.l6-btn-go { background: var(--teal-dark); color: var(--white); box-shadow: 0 4px 0 #075e50; }
+.l6-btn-go:active { box-shadow: 0 1px 0 #075e50; }
+.l6-btn-light { background: var(--white); color: var(--navy); box-shadow: inset 0 0 0 1px var(--line), 0 4px 0 var(--line); }
+.l6-btn-light:active { box-shadow: inset 0 0 0 1px var(--line), 0 1px 0 var(--line); }
+@media (prefers-reduced-motion: reduce) { .l6-btn { transition: none; } }
+
+/* Hero: centred, then a fan of tilted product cards */
+.l6-hero { padding-top: clamp(48px, 8vh, 88px); overflow: hidden; }
+.l6-hero .wrap { display: grid; justify-items: center; gap: 22px; text-align: center; }
+.l6-hero h1 { font-size: clamp(44px, 6.4vw, 80px); line-height: 1.04; letter-spacing: -.01em; }
+.l6-hero .lede { max-width: 54ch; }
+.l6-ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 6px; }
+.l6-awards { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 28px; margin-top: 8px; }
+.l6-award { display: inline-flex; align-items: center; gap: 8px; color: var(--faded); fill: #a9bccb; font-size: 13px; line-height: 1.25; }
+.l6-award b { display: block; color: var(--navy); font-weight: 600; }
+.l6-fan { position: relative; height: clamp(300px, 34vw, 440px); margin-top: clamp(32px, 6vh, 64px);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.l6-fan-track { position: absolute; left: 50%; top: 40px; display: flex; gap: 22px; transform: translateX(-50%) rotate(-7deg); }
+.l6-fan-card { flex: none; width: 270px; transform: translateY(var(--dy)) rotate(4deg); }
+.l6-fan .mock { max-width: none; box-shadow: 0 30px 50px #00305224; }
+.l6-fan .mock-body { font-size: 14px; gap: 10px; padding: 16px; }
+.l6-fan .chart { width: 100%; height: auto; }
+.l6-fan::after { content: ""; position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(transparent, #f2f6f9); }
+
+/* Sections */
+.l6-sec { padding-block: clamp(72px, 9vw, 120px); }
+.l6-alt { background: var(--white); }
+.l6-head { display: grid; gap: 12px; max-width: 760px; margin-bottom: 36px; }
+.l6-head.center { text-align: center; justify-items: center; margin-inline: auto; }
+.l6-head h2 { font-size: clamp(32px, 4.2vw, 52px); }
+.l6-head p { font-size: 18px; color: var(--faded); }
+.l6-fmt-name { color: var(--navy); font-weight: 500; scroll-margin-top: 140px; }
+.l6-link { font: 600 16px var(--sans); color: var(--blue); text-decoration: none; }
+
+/* Que features: the cards below replace the Que section's text list on this page */
+.lp6 #que .que-list, .lp6 #que .center-note { display: none; }
+.l6-que-more { padding-top: 0; }
+#que + .l6-que-more { background: inherit; }
+
+/* Tabbed catalogues */
+.l6-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.l6-tabs button { font: 500 16px var(--sans); padding: 10px 18px; border-radius: var(--r-round); border: 0; cursor: pointer; background: var(--white); color: var(--navy); box-shadow: inset 0 0 0 1px var(--line), 0 3px 0 var(--line); scroll-margin-top: 160px; }
+.l6-alt .l6-tabs button { background: var(--surface-blue); }
+.l6-tabs button[aria-selected="true"] { background: var(--navy); color: var(--white); box-shadow: 0 3px 0 #001a2c; }
+.l6-panel { border-radius: var(--r-main); background: var(--white); box-shadow: 0 0 0 1px var(--line); padding: clamp(24px, 4vw, 48px); }
+.l6-alt .l6-panel { background: #f2f6f9; box-shadow: none; }
+.l6-covered { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 32px; }
+.l6-covered h3, .l6-fmt h3 { font-size: 28px; margin-bottom: 8px; }
+.l6-covered ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 20px 24px; }
+.l6-covered li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: center; }
+.l6-covered li > svg { width: 44px; height: 44px; padding: 9px; border-radius: 12px; background: var(--surface-blue); color: var(--blue); }
+.l6-covered li > span { display: grid; gap: 2px; }
+.l6-fmt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+.l6-fmt > div { display: grid; gap: 12px; align-content: start; }
+.l6-fmt .mock { justify-self: end; }
+@media (max-width: 860px) { .l6-covered, .l6-fmt, .l6-covered ul { grid-template-columns: 1fr; } .l6-fmt .mock { justify-self: stretch; } }
+
+/* Trust tiles */
+.l6-trust { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+@media (max-width: 860px) { .l6-trust { grid-template-columns: 1fr; } }
+.l6-tile { display: grid; gap: 14px; align-content: start; padding: 36px; border-radius: var(--r-main); background: var(--white); box-shadow: 0 0 0 1px var(--line); }
+.l6-tile h3 { font-size: 28px; }
+.l6-tile > p { color: var(--faded); font-size: 18px; }
+.l6-tile-go { background: var(--navy); box-shadow: none; justify-items: start; }
+.l6-tile-go h3 { color: var(--white); } .l6-tile-go > p { color: #c9dbe8; }
+.l6-faces { display: flex; margin-top: 8px; }
+.l6-faces > * { margin-right: -10px; box-shadow: 0 0 0 3px var(--white); border-radius: 50%; }
+.l6-nums { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; gap: 8px 28px; margin: 0; }
+.l6-nums dt { font: 600 36px/1 var(--display); color: var(--navy); }
+.l6-nums dd { margin: 4px 0 0; color: var(--faded); font-size: 14px; }
+@media (max-width: 600px) { .l6-nums { grid-template-columns: repeat(2, auto); } }
+
+/* Testimonials marquee */
+.l6-marquee { overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.l6-track { display: flex; gap: 24px; width: max-content; animation: l6-scroll 60s linear infinite; }
+.l6-marquee:hover .l6-track { animation-play-state: paused; }
+.l6-track .quote { width: 420px; flex: none; margin: 0; background: #f2f6f9; }
+@keyframes l6-scroll { to { transform: translateX(calc(-50% - 12px)); } }
+@media (prefers-reduced-motion: reduce) { .l6-track { animation: none; } .l6-marquee { overflow-x: auto; } }
+
+/* Closing */
+.l6-close .wrap { display: grid; justify-items: center; gap: 32px; text-align: center; }
+.l6-close h2 { font-size: clamp(32px, 4.4vw, 56px); max-width: 18ch; }
+.l6-award svg { color: #a9bccb; flex: none; }

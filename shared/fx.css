@@ -1,0 +1,35 @@
+/* Quill 6.0 only (quill-6.html; Quill 5.0 stays standard). Kept from the "Cinematic" experiment (her picks, 25 Nov; after forgeautomotive.co.uk): the pinned mission band and the hero zoom.
+   Smooth scrolling, word-by-word headlines and opening images were dropped ("too much motion"). fx.js sets body[data-fx] unless reduced motion. */
+
+/* hero photo eases in closer as you leave it */
+[data-fx] .q3-hero-photo { scale: calc(1 + var(--fxh, 0) * .1); }
+
+/* pinned mission band: holds the screen while its three phrases step 01 → 03 over their own photos (two screens of scrolling) */
+[data-fx] .q3-intro { position: relative; height: calc(var(--fxm, 72px) + 120vh); padding: 0; } /* strip + 60vh band + 60vh of holding */
+body[data-fx].q3-dark .q3-intro { background: transparent; }
+[data-fx] .q3-intro .marquee { position: sticky; top: var(--fxhdr, 66px); z-index: 3; margin: 0; padding-block: 22px; background: var(--surface-blue); } /* the strip stays put under the header while the band plays (her ask, 25 Nov) */
+[data-fx] .q3-intro .wrap { position: sticky; top: calc(var(--fxhdr, 66px) + var(--fxm, 72px)); height: 60vh; max-width: none; overflow: hidden; background: var(--navy); display: grid; align-content: center; justify-items: center; } /* one pinned element: photos and text together, so it releases cleanly */
+[data-fx] .fx-scenes { position: absolute; inset: 0; }
+[data-fx] .q3-intro h2, [data-fx] .fx-count { position: relative; z-index: 1; }
+[data-fx] .fx-scenes img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .9s ease; }
+[data-fx] .fx-scenes img.on { opacity: .32; }
+[data-fx] .fx-scenes::after { content: ""; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgb(0 30 52 / .55), rgb(0 30 52 / .9)); }
+[data-fx] .q3-intro h2 a { transition: opacity .6s ease, color .6s ease; }
+[data-fx] .q3-intro h2.fx-step a { opacity: .35; }
+[data-fx] .q3-intro h2.fx-step a.on { opacity: 1; color: var(--white); }
+[data-fx] .fx-count { margin-top: 32px; font: 500 14px var(--sans); letter-spacing: .2em; color: #ffffffb3; }
+
+/* Closing as a full photo with a navy shadow, like the hero, so the page opens and closes the same way (after Forge's "Refuse Ordinary" end; no motion).
+   body[data-q6], not [data-fx], so it shows even with reduced motion. Photo: equitechfutures.com, 1905px. */
+body[data-q6] .q3-ready { padding-block: 160px; color: var(--white);
+  background: linear-gradient(180deg, var(--navy) 0%, var(--navy) 4%, rgb(0 48 82 / .74) 32%, rgb(0 48 82 / .74) 70%, var(--navy) 100%), url(../assets/events/closing.webp) center 35% / cover var(--navy); }
+body[data-q6] .q3-ready .wrap { grid-template-columns: 1fr; justify-items: center; text-align: center; }
+body[data-q6] .q3-ready .wrap > div { justify-items: center; }
+body[data-q6] .q3-book { display: none; }
+body[data-q6] .q3-ready h2 { color: var(--white); font-size: clamp(40px, 4.4vw, 60px); }
+body[data-q6] .q3-ready .lede { color: #dce8f2; }
+body[data-q6] .q3-ready .btn-ghost { color: var(--white); border-color: #ffffffb3; }
+body[data-q6] .q3-ready .btn-ghost:hover { background: var(--white); color: var(--navy); }
+body[data-q6] .q3-behind.q3-wave { --wave: var(--navy) !important; } /* the wave above meets the photo's navy top, not white */
+body[data-q6] .q3-ready + .footer { border-top: 0; } /* the closing runs straight into the footer's navy */
+body[data-q6] .q3-ready { margin-top: -4px; } /* overlap the wave's soft bottom edge, so no hairline */

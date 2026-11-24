@@ -1,0 +1,152 @@
+/* Events calendar mockups (events.html, events-front.html). Pictures lead; the month grid is the interactive part. */
+.ev-page h1 { font-size: clamp(36px, 5vw, 56px); }
+.ev-layout { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 56px; align-items: start; }
+.ev-side { position: sticky; top: 96px; display: grid; gap: 40px; }
+
+.ev-grid { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-main); padding: 20px; }
+.ev-grid-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; font: 600 18px var(--display); }
+.ev-nav { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--white); color: var(--navy); font-size: 16px; cursor: pointer; }
+.ev-nav:hover { background: var(--surface-blue); }
+.ev-wd, .ev-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; text-align: center; }
+.ev-wd span { font: 500 12px var(--sans); letter-spacing: .08em; color: var(--faded); padding-bottom: 6px; }
+.ev-day { display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; border: 0; background: none; font: 300 15px var(--sans); color: var(--navy); }
+.ev-day.today { box-shadow: inset 0 0 0 1px var(--line); }
+.ev-day.has { background: var(--surface-blue); font-weight: 500; cursor: pointer; transition: background .15s, color .15s, transform .15s; }
+.ev-day.has:hover, .ev-day.has.hot { background: var(--teal); color: var(--white); transform: scale(1.08); }
+.ev-day.has.on { background: var(--navy); color: var(--white); }
+.ev-hint { margin-top: 12px; font-size: 13px; color: var(--faded); }
+
+.ev-soon h3 { font-size: 16px; margin-bottom: 12px; }
+.ev-soon ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ev-soon li { display: grid; gap: 2px; font-size: 15px; }
+.ev-soon li span { font-size: 14px; color: var(--faded); }
+
+.ev-list { display: grid; gap: 40px; }
+.ev-filter[hidden] { display: none; }
+.ev-filter { display: flex; align-items: center; gap: 16px; font: 500 15px var(--sans); }
+.ev-filter span { padding: 6px 14px; border-radius: 999px; background: var(--navy); color: var(--white); }
+.ev-filter button { border: 0; background: none; color: var(--fh-blue); font: inherit; cursor: pointer; text-decoration: underline; }
+
+.ev-card { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 32px; align-items: center; text-decoration: none; color: inherit; }
+.ev-pic { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: var(--r-main); overflow: hidden; background: var(--surface-blue); }
+.ev-pic img { width: 100%; height: 100%; object-fit: cover; object-position: center 30%; transition: transform .5s ease; }
+.ev-card:hover .ev-pic img { transform: scale(1.05); }
+.ev-chip { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; min-width: 56px; padding: 6px 8px; background: var(--white); border-radius: 6px; color: var(--navy); line-height: 1.1; }
+.ev-chip small { font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--faded); }
+.ev-chip b { font: 600 22px var(--display); }
+.ev-text { display: grid; gap: 10px; }
+.ev-text strong { font: 600 clamp(22px, 2.4vw, 30px)/1.2 var(--display); }
+.ev-card:hover .ev-text strong { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.ev-meta { color: var(--faded); }
+.ev-by { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.ev-go { color: var(--fh-blue); font-weight: 500; opacity: 0; transform: translateX(-6px); transition: opacity .2s, transform .2s; }
+.ev-card:hover .ev-go, .ev-card:focus-visible .ev-go { opacity: 1; transform: none; }
+.ev-all { justify-self: start; font: 500 16px var(--sans); color: var(--fh-blue); text-decoration: none; }
+.ev-all:hover { text-decoration: underline; }
+
+/* front-page version: smaller rows */
+.ev-card.is-compact { grid-template-columns: 220px minmax(0, 1fr); gap: 24px; }
+.ev-front .ev-list { gap: 28px; }
+.ev-card.is-compact .ev-text strong { font-size: 20px; }
+
+@media (max-width: 900px) {
+  .ev-layout { grid-template-columns: 1fr; gap: 40px; }
+  .ev-side { position: static; }
+  .ev-card, .ev-card.is-compact { grid-template-columns: 1fr; gap: 16px; }
+  .ev-go { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) { .ev-pic img, .ev-go, .ev-day.has { transition: none; } }
+
+/* School of Radical Attention format: a plain list, picture left, details right */
+.ev-rows { display: grid; gap: 56px; }
+.ev-row { display: grid; grid-template-columns: minmax(0, 474fr) minmax(0, 700fr); gap: 36px; align-items: start; }
+.ev-row .ev-pic { aspect-ratio: 16 / 9; border-radius: 4px; }
+.ev-rtext { display: grid; gap: 8px; justify-items: start; }
+.ev-rtext h2 { font-size: clamp(24px, 2.6vw, 32px); line-height: 1.2; margin-bottom: 8px; }
+.ev-rtext p { font-size: 18px; margin: 0; }
+.ev-rtext .btn { margin-top: 16px; }
+@media (max-width: 900px) { .ev-row { grid-template-columns: 1fr; gap: 20px; } }
+.ev-row .ev-pic img { object-position: center 30%; }
+
+/* Month grid, School of Radical Attention format */
+.evm-wrap { max-width: 1280px; }
+.evm-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.evm-head h2 { font-size: clamp(26px, 3vw, 36px); }
+.evm-wd { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 6px; text-align: center; font: 500 13px var(--sans); letter-spacing: .1em; text-transform: uppercase; color: var(--faded); }
+.evm-grid { position: relative; display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.evm-cell { position: relative; display: block; min-height: 0; padding: 0; border: 0; border-radius: 6px; background: var(--white); overflow: hidden; text-align: left; font: inherit; color: var(--navy); }
+.evm-cell.is-out { background: transparent; }
+.evm-cell.is-today { box-shadow: inset 0 0 0 2px var(--teal); }
+.evm-cell i { position: absolute; top: 8px; right: 8px; min-width: 28px; padding: 3px 6px; text-align: center; font: 500 14px var(--sans); font-style: normal; background: var(--white); border-radius: 4px; }
+.evm-cell:not(.has) i { background: none; }
+.evm-cell.q { background: #ffffff80; } .evm-cell.q i { top: 12px; font-weight: 300; color: var(--faded); }
+.evm-cell.has { cursor: pointer; }
+.evm-cell img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.evm-cell.has:hover img { transform: scale(1.08) rotate(.6deg); }
+.evm-label { position: absolute; inset: auto 0 0; padding: 36px 12px 12px; color: var(--white); font-size: 14px; line-height: 1.25; background: linear-gradient(transparent, #000000b8); }
+.evm-label b { display: block; font-weight: 500; font-size: 12px; letter-spacing: .04em; opacity: .9; margin-bottom: 2px; }
+.evm-cell.on { outline: 3px solid var(--navy); outline-offset: -3px; }
+.evm-panel { position: absolute; z-index: 3; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; background: var(--surface-blue); border-radius: 6px; box-shadow: 0 0 0 transparent; transition: left .32s cubic-bezier(.2, .8, .2, 1), top .32s cubic-bezier(.2, .8, .2, 1), width .32s cubic-bezier(.2, .8, .2, 1), height .32s cubic-bezier(.2, .8, .2, 1), box-shadow .32s; }
+.evm-panel.is-in { box-shadow: 0 24px 60px #00305240; }
+.evm-panel > img { width: 100%; height: 100%; object-fit: cover; }
+.evm-info { position: relative; display: grid; gap: 10px; align-content: center; justify-items: start; padding: 20px 24px; overflow-y: auto; }
+.evm-info > * { opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; }
+.evm-panel.is-in .evm-info > * { opacity: 1; transform: none; transition-delay: calc(.12s + var(--i, 0) * .06s); }
+.evm-info > :nth-child(3) { --i: 1; } .evm-info > :nth-child(4) { --i: 2; } .evm-info > :nth-child(5) { --i: 3; }
+.evm-panel h3 { font-size: clamp(18px, 1.5vw, 22px); line-height: 1.2; padding-right: 28px; }
+.evm-panel h3 a { color: var(--navy); text-decoration: none; }
+.evm-panel h3 a:hover { text-decoration: underline; }
+.evm-time { font-weight: 500; margin: 0; }
+.evm-by { display: flex; align-items: center; gap: 10px; margin: 0; }
+.evm-grid.is-open .evm-cell:not(.on) { opacity: .3; }
+.evm-cell { transition: opacity .3s; }
+/* photo tiles around the sessions: faded and unlabelled, so the live days stand out */
+.evm-cell.deco img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); opacity: .3; }
+.evm-cell.deco i { background: none; font-weight: 500; }
+.evm-x { position: absolute; top: 10px; right: 12px; border: 0; background: none; font-size: 26px; line-height: 1; color: var(--navy); cursor: pointer; }
+.evm-list { display: none; margin-top: 32px; }
+@media (max-width: 900px) { .evm-wd, .evm-grid { display: none; } .evm-list { display: grid; } }
+@media (prefers-reduced-motion: reduce) { .evm-cell img { transition: none; } }
+
+.evm-open { margin-top: 56px; }
+.evm-open h3 { font-size: 20px; margin-bottom: 16px; }
+.evm-open-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.evm-open-card { display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: center; text-decoration: none; color: inherit; }
+.evm-open-card .poster-art { width: 72px; border-radius: 6px; box-shadow: 0 6px 14px #00305226; }
+.evm-open-card span span { display: block; margin-top: 4px; font-size: 14px; color: var(--faded); }
+.evm-open-card:hover strong { text-decoration: underline; }
+@media (max-width: 900px) { .evm-open-row { grid-template-columns: 1fr; } }
+.evm-que { display: grid; place-items: center; width: 72px; aspect-ratio: 3 / 4; border-radius: 6px; background: var(--white); box-shadow: 0 6px 14px #00305226; }
+.evm-que img { width: 52px; height: auto; }
+
+/* The Admit Track: open enrolment, shown as "Open now" rather than on a date */
+.ev-chip-open b { color: var(--teal-text); }
+.ev-card[hidden] { display: none; }
+.evm-band { display: grid; grid-template-columns: 72px 1fr auto; gap: 20px; align-items: center; margin-bottom: 12px; padding: 12px 20px 12px 12px; background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--teal); border-radius: 6px; text-decoration: none; color: inherit; }
+.evm-band img { width: 72px; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 4px; }
+.evm-band span { display: grid; gap: 2px; }
+.evm-band b { font: 500 12px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--teal-text); }
+.evm-band strong { font: 600 18px var(--display); }
+.evm-band span span { font-size: 14px; color: var(--faded); }
+.evm-band .evm-band-go { display: block; color: var(--fh-blue); font-weight: 500; font-size: 16px; white-space: nowrap; }
+.evm-band:hover strong { text-decoration: underline; }
+@media (max-width: 900px) { .evm-band { grid-template-columns: 56px 1fr; } .evm-band img { width: 56px; } .evm-band-go { display: none; } }
+@media (prefers-reduced-motion: reduce) { .evm-panel, .evm-info > *, .evm-cell { transition: none; } }
+.evm-band-go span { display: inline; }
+
+/* LP2 Live sessions band: the front-page list inside the white mock */
+.ev-next { gap: 14px; }
+.ev-next .ev-card.is-compact { grid-template-columns: 150px minmax(0, 1fr); gap: 16px; }
+.ev-next .ev-card.is-compact .ev-text strong { font-size: 17px; }
+.ev-next .ev-meta, .ev-next .ev-by, .ev-next .ev-go { display: none; } /* title + date chip only (her note, 20 Nov) */
+.ev-next .ev-card.is-compact { align-items: center; }
+@media (max-width: 560px) { .ev-next .ev-card.is-compact { grid-template-columns: 110px minmax(0, 1fr); } }
+/* Coming up + Cohorts (LP2): a small date chip so the picture leads (20 Nov) */
+.ev-next .ev-chip { top: 8px; right: 8px; min-width: 40px; padding: 4px 7px; border-radius: 8px; }
+.ev-next .ev-chip small { font-size: 9px; }
+.ev-next .ev-chip b { font-size: 16px; line-height: 1.1; }
+/* tall FuturesHub covers in wide frames: keep the presenter's face in view */
+.ev-pic img[src*='present-like-a-pro'], .evm-cell img[src*='present-like-a-pro'], .evm-panel > img[src*='present-like-a-pro'] { object-position: 50% 42%; }
+/* dates moved off the pictures into a quiet line under the title (20 Nov) */
+.ev-next .ev-text { display: grid; gap: 4px; align-content: center; }
+.ev-when { font-size: 14px; color: var(--faded); }

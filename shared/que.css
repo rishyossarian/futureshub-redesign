@@ -1,0 +1,462 @@
+/* FuturesHub "Read with Que" page. FuturesHub colours and fonts only; layout ideas from quill.org/tools/evidence. */
+
+#app [hidden] { display: none !important; } /* tab panels set display: grid; hidden must still win */
+.q-k { display: block; font: 500 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--faded); margin-bottom: 6px; }
+.q-illus { display: inline-block; font: 500 12px var(--sans); color: var(--faded); border: 1.5px dashed var(--faded); border-radius: var(--r-round); padding: 1px 8px; vertical-align: middle; }
+
+/* Hero: what Que does, centred, then the product running on a big laptop below it (Quill) */
+.q-hero { background: linear-gradient(170deg, var(--navy) 0%, #0b4a78 100%); color: var(--surface); padding-block: 72px 88px; overflow-x: clip; }
+.q-hero-text { display: grid; justify-items: center; text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.q-hero h1 { color: var(--white); }
+.q-hero .accent { color: var(--teal-light); }
+.q-hero .lede { color: #d5e3ee; margin-block: 20px 28px; }
+.q-hero .cta-row { justify-content: center; }
+.q-btn-light { background: var(--white); color: var(--navy); }
+.q-btn-light:hover { background: var(--surface-blue); }
+.q-free { margin-top: 16px; font-size: 15px; color: #d5e3ee; }
+
+/* A whole laptop, big and centred under the text (Quill) */
+.q-laptop { width: 100%; max-width: 1000px; margin: 0 auto; }
+.q-screen { background: var(--white); border: 16px solid #1c2733; border-bottom-width: 22px; border-radius: 22px 22px 6px 6px; overflow: hidden; color: var(--navy); box-shadow: 0 30px 60px #00000040; }
+.q-laptop::after { content: ""; display: block; height: 18px; margin-inline: -5%; background: linear-gradient(#cfd8e0, #8e9cab); border-radius: 0 0 18px 18px; box-shadow: 0 18px 30px #00000040; }
+.q-app-bar { display: flex; justify-content: space-between; padding: 12px 24px; background: var(--surface-blue); font: 500 15px var(--sans); }
+.q-count { color: var(--teal-text); }
+.q-app { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; padding: 28px 32px 36px; font-size: 17px; line-height: 1.5; }
+.q-app-text { display: grid; gap: 12px; align-content: start; }
+.q-app-text img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--r-small); }
+.q-app-text strong { font: 600 24px/1.2 var(--display); }
+.q-fade { color: var(--faded); }
+.q-app-que { display: flex; flex-direction: column; gap: 10px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-small); padding: 18px; }
+.q-app-que .bubble { padding: 12px 14px; font-size: 16px; }
+.q-app-que .verdict { font-size: 13px; padding: 1px 9px; }
+.q-app-que .bubble.me { align-self: flex-end; max-width: 88%; }
+.q-app-input { margin-top: auto; border: 1px solid var(--line); border-radius: var(--r-round); background: var(--white); padding: 10px 16px; font-size: 15px; color: var(--faded); }
+/* Inside a QueBrief */
+.q-briefcard { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-main); padding: 16px 24px; margin-bottom: 24px; }
+.q-briefcard h3 { font-size: 20px; margin: 6px 0 2px; }
+.q-counter { font: 500 15px var(--sans); border: 1px solid var(--line); border-radius: var(--r-round); padding: 6px 14px; background: var(--surface); }
+.q-counter.done { border-color: var(--teal); color: var(--teal-text); background: #0fa68e14; }
+.q-block { margin-top: 24px; display: grid; gap: 12px; }
+.q-block[hidden] { display: none; }
+.q-block-title { font-size: 26px; }
+.q-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.q-tabs button { font: 500 15px var(--sans); min-height: 44px; padding: 8px 18px; border-radius: var(--r-round); border: 1.5px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
+.q-tabs button[aria-selected="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.q-attempt { display: grid; grid-template-columns: 1fr 1.4fr; gap: 24px; background: var(--white); border: 1px solid var(--line); border-radius: var(--r-main); padding: 28px; }
+.q-why { display: grid; gap: 10px; align-content: start; }
+.q-why p { color: var(--faded); }
+.q-exchange { display: grid; gap: 12px; }
+.q-prompt { background: #fdf6e3; border: 1px solid #ecd9a8; border-radius: var(--r-small); padding: 14px 16px; font-weight: 500; }
+.q-exchange .who { font: 500 14px var(--sans); color: var(--faded); margin-bottom: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+
+.q-two { grid-template-columns: 1fr 1.3fr; gap: 32px; align-items: start; }
+.q-two > div:first-child { display: grid; gap: 12px; }
+.q-pull { font: 600 22px/1.3 var(--display); border-left: 4px solid var(--fh-blue); padding-left: 16px; margin-top: 12px; }
+.q-student { background: #f6f2fc; border: 1px solid #e3d8f5; border-radius: var(--r-main); padding: 24px; display: grid; gap: 14px; justify-items: start; }
+.q-student-head { display: flex; align-items: center; gap: 10px; font-size: 18px; }
+.q-student .bubble { width: 100%; }
+
+/* Stakeholders sit around the issue; the chosen one's words open in the middle, not underneath (her note on the live brief) */
+.q-ring { display: grid; grid-template-columns: minmax(180px, 1fr) minmax(0, 2.2fr) minmax(180px, 1fr); grid-template-areas: "s0 hub s1" "s2 hub s3" "s4 hub s5"; gap: 20px 40px; align-items: center; margin-top: 8px; }
+.q-who { position: relative; display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; text-align: left; font: 500 16px/1.25 var(--sans); color: var(--navy); background: var(--white); border: 1.5px solid var(--line); border-radius: var(--r-small); cursor: pointer; }
+.q-who::after { content: ""; position: absolute; top: 50%; width: 40px; border-top: 1.5px dashed var(--line); }
+.q-who[style*="s0"]::after, .q-who[style*="s2"]::after, .q-who[style*="s4"]::after { left: 100%; }
+.q-who[style*="s1"]::after, .q-who[style*="s3"]::after, .q-who[style*="s5"]::after { right: 100%; }
+.q-who:hover { border-color: var(--navy); }
+.q-who[aria-selected="true"] { border-color: var(--fh-blue); background: var(--surface-blue); }
+.q-who[aria-selected="true"]::after { border-top: 2px solid var(--fh-blue); }
+.q-av { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--surface); font-size: 18px; }
+.q-who[aria-selected="true"] .q-av { background: var(--white); box-shadow: 0 0 0 2px var(--fh-blue); }
+.q-hub { grid-area: hub; align-self: stretch; display: grid; align-content: start; gap: 6px; background: var(--white); border: 1.5px solid var(--fh-blue); border-radius: var(--r-main); padding: 24px 28px; }
+.q-issue { font: 600 18px/1.3 var(--display); padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.q-persp-panel { margin: 10px 0 0; font: 300 20px/1.45 var(--sans); font-style: italic; }
+.q-persp-panel cite { display: block; margin-top: 12px; font: 500 14px var(--sans); font-style: normal; color: var(--fh-blue); }
+.q-persp-panel cite::before { content: "— "; }
+
+.q-claims { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 12px; } /* full width, so it lines up with Perspectives above */
+.q-claims li { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-small); padding: 12px 16px; display: grid; grid-template-columns: 1fr auto; gap: 12px 20px; align-items: center; }
+.q-claims li[data-state="ok"] { border-color: var(--teal); }
+.q-pick { display: flex; flex-wrap: wrap; gap: 8px; }
+.q-pick button { font: 500 15px var(--sans); min-height: 44px; padding: 6px 14px; border-radius: var(--r-small); border: 1.5px solid var(--line); background: var(--white); color: var(--navy); cursor: pointer; }
+.q-pick button:hover { border-color: var(--navy); }
+.q-pick button.ok, .q-pick button.answer { background: var(--teal-text); border-color: var(--teal-text); color: var(--white); }
+.q-pick button.no { background: var(--surface); border-color: var(--faded); color: var(--faded); text-decoration: line-through; }
+.q-evidence { grid-column: 1 / -1; background: var(--surface-blue); border-radius: var(--r-small); padding: 12px 16px; font-size: 16px; }
+.q-evidence .q-k { margin: 8px 0 4px; }
+
+/* Topics: a sample to try + see all, per topic (Quill) */
+.q-topics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px 28px; }
+.q-topic { padding: 0 12px; display: flex; flex-direction: column; gap: 10px; text-align: center; align-items: center; } /* no card box: cover, label, title, one button */
+.q-topic h3 { font-size: 22px; }
+.q-topic .poster-art { width: 78%; border-radius: 10px; box-shadow: 0 12px 24px #00305233; margin-bottom: 8px; }
+.q-sample { font-size: 15px; color: var(--faded); }
+
+/* Formats: named in small caps; length shows as the cover's thickness */
+.q-fmt { font: 500 13px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--faded); }
+.q-formats { list-style: none; padding: 0; margin: 0 auto 40px; max-width: 960px; display: grid; grid-template-columns: repeat(3, 1fr); }
+.q-formats li { padding: 4px 28px; text-align: center; }
+.q-formats li + li { border-left: 1px solid var(--line); }
+.q-formats .q-fmt { font: 600 18px var(--display); letter-spacing: 0; text-transform: none; color: var(--navy); }
+.q-formats p { font-size: 15px; color: var(--faded); margin-top: 6px; }
+/* Stacked page edges: a QueBook is thick, a case study has one extra sheet, a brief is a single sheet */
+.q-topic[data-k="quebook"] .poster-art { box-shadow: 3px 3px 0 -1px #fff, 3px 3px 0 0 #c4d2dd, 6px 6px 0 -1px #fff, 6px 6px 0 0 #c4d2dd, 9px 9px 0 -1px #fff, 9px 9px 0 0 #c4d2dd, 0 16px 28px #00305229; }
+.q-topic[data-k="case"] .poster-art { box-shadow: 4px 4px 0 -1px #fff, 4px 4px 0 0 #c4d2dd, 0 16px 28px #00305229; }
+.q-topic-cta { width: 100%; margin-top: auto; padding-top: 8px; }
+.q-all { max-width: none; margin-top: 32px; display: flex; justify-content: center; }
+.q-topic-cta .btn { justify-content: center; white-space: normal; text-align: center; }
+.q-see-all { font: 500 15px var(--sans); color: var(--fh-blue); text-decoration: none; padding: 8px 0; min-height: 44px; display: flex; justify-content: center; align-items: center; gap: 6px; }
+.q-see-all:hover { text-decoration: underline; }
+
+@media (max-width: 1000px) {
+  .q-two, .q-attempt { grid-template-columns: 1fr; }
+  .q-topics { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px) {
+  .q-topics, .q-formats { grid-template-columns: 1fr; }
+  .q-formats li { padding: 14px 0; }
+  .q-formats li + li { border-left: 0; border-top: 1px solid var(--line); }
+  .q-hero { padding-bottom: 56px; }
+  .q-screen { border-bottom-width: 14px; }
+  .q-app { grid-template-columns: 1fr; padding: 16px; gap: 16px; font-size: 15px; }
+  .q-screen { border-width: 10px; }
+  .q-app-text p { display: none; }
+  .q-app-text strong { font-size: 19px; }
+  .q-ring { grid-template-columns: 1fr 1fr; grid-template-areas: "s0 s1" "s2 s3" "s4 s5" "hub hub"; gap: 10px; }
+  .q-who { min-height: 56px; font-size: 15px; padding: 10px 12px; }
+  .q-who::after { display: none; }
+  .q-hub { padding: 20px; }
+  .q-persp-panel { font-size: 18px; }
+  .q-claims li { grid-template-columns: 1fr; }
+  .q-attempt { padding: 20px; }
+}
+
+/* Meet Que: Brilliant-style feature rows. Text one side; a soft panel with a white chat card, clipped at the top, on the other. */
+/* Que's mark is wide (410 x 235): size by width. No shadows (usage sheet). */
+.q-mark { display: block; height: auto; flex: none; }
+.q-mark-big { width: 168px; }
+.q-mark-chat { width: 52px; }
+
+.q-meet { background: var(--white); }
+.q-meet-head { display: grid; justify-items: start; gap: 16px; text-align: left; margin-bottom: 56px; }
+.q-meet-head .q-mark-big { margin: 0; }
+.q-meet-head .lede { margin: 0; }
+.q-f { display: grid; grid-template-columns: 1fr 1.15fr; gap: 64px; align-items: center; padding-block: 40px; }
+.q-f.flip .q-f-text { order: 2; }
+.q-f-text h3 { font: 600 36px/1.15 var(--display); margin-bottom: 16px; }
+.q-f-text p { font-size: 19px; color: var(--faded); max-width: 440px; }
+.q-f-panel { position: relative; padding: 56px 14%; overflow: hidden; border-radius: 28px; background: linear-gradient(160deg, #e6f0f8, #ddeeea); }
+.q-f-card { display: grid; gap: 10px; background: var(--white); border-radius: 26px; padding: 22px; box-shadow: 0 20px 40px #0030521a; font-size: 15px; line-height: 1.45; }
+.q-f-b { margin: 0; padding: 10px 14px; border-radius: 14px; background: #e8f6f2; max-width: 92%; }
+.q-f-you { justify-self: end; background: var(--white); box-shadow: 0 4px 14px #0030521f; }
+.q-f-que { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: end; margin-left: -70px; }
+.q-f-avatar { width: 60px; margin-bottom: 4px; }
+.q-f-lines { display: grid; gap: 6px; justify-items: start; }
+.q-f-que .verdict { font-size: 12px; padding: 1px 8px; margin-right: 4px; }
+.q-f-choices { display: grid; gap: 8px; margin-top: 4px; }
+.q-f-choices span { border: 1.5px solid var(--line); border-radius: 12px; padding: 10px; text-align: center; font-weight: 500; }
+.q-f-page { background: var(--surface); border-radius: 12px; padding: 14px; color: var(--faded); }
+.q-f-page mark { background: #0489dc29; color: var(--navy); padding: 0 2px; }
+.q-f-input { border: 1px solid var(--line); border-bottom: 2px solid var(--fh-blue); border-radius: 12px; padding: 10px 14px; color: var(--faded); background: var(--white); }
+.q-f-input.typed { color: var(--navy); }
+.q-f-top { display: flex; justify-content: space-between; font: 500 13px var(--sans); letter-spacing: .06em; text-transform: uppercase; color: var(--faded); }
+.q-f-top b { color: var(--teal-text); }
+.q-f-row, .q-app-actions { display: flex; gap: 8px; }
+.q-f-row span, .q-app-actions span { flex: 1; text-align: center; border: 1.5px solid var(--line); border-radius: 12px; padding: 9px; font-weight: 500; }
+.q-f-row .q-f-go, .q-app-actions .q-f-go { background: var(--fh-blue); border-color: var(--fh-blue); color: var(--white); }
+.q-f-choices span:only-child { background: var(--surface-blue); border-color: var(--fh-blue); } /* the option the learner just tapped */
+@media (max-width: 900px) {
+  .q-f { grid-template-columns: 1fr; gap: 24px; }
+  .q-f.flip .q-f-text { order: 0; }
+  .q-f-panel { padding: 32px 16px 32px 76px; }
+}
+/* Read with Que 2.0 (body[data-h2]): headline left (3/5), supporting text and buttons right (2/5), tops aligned */
+body[data-h2] .q-hero-text { grid-template-columns: 3fr 2fr; gap: 56px; align-items: start; justify-items: start; text-align: left; max-width: none; margin: 0 0 56px; }
+body[data-h2] .q-hero-text h1 { margin: 0; }
+body[data-h2] .q-hero-side { display: grid; gap: 24px; justify-items: start; align-content: start; }
+body[data-h2] .q-hero .lede { margin: 0; max-width: none; }
+body[data-h2] .q-hero .cta-row { justify-content: flex-start; margin: 0; }
+body[data-h2] .q-hero .q-free { margin: 0; }
+@media (max-width: 900px) { body[data-h2] .q-hero-text { grid-template-columns: 1fr; gap: 24px; } }
+body[data-h2] .q-hero-side { margin-top: 5px; }
+/* Read with Que 2.0: one thread instead of attempt toggles */
+body:is([data-h2],[data-brief2]) .q-thread { display: grid; gap: 20px; background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+body:is([data-h2],[data-brief2]) .q-step { display: grid; grid-template-columns: 36px 1fr; gap: 16px; position: relative; }
+body:is([data-h2],[data-brief2]) .q-step:not(:last-child)::before { content: ""; position: absolute; left: 17px; top: 40px; bottom: -20px; width: 2px; background: var(--line); }
+body:is([data-h2],[data-brief2]) .q-stepno { width: 36px; height: 36px; border-radius: 50%; background: var(--navy); color: var(--white); display: grid; place-items: center; font-weight: 500; }
+body:is([data-h2],[data-brief2]) .q-step .q-exchange { display: grid; gap: 10px; }
+@media (max-width: 600px) { body:is([data-h2],[data-brief2]) .q-thread { padding: 16px; } body:is([data-h2],[data-brief2]) .q-step { grid-template-columns: 28px 1fr; gap: 12px; } body:is([data-h2],[data-brief2]) .q-stepno { width: 28px; height: 28px; } body:is([data-h2],[data-brief2]) .q-step:not(:last-child)::before { left: 13px; top: 32px; } }
+body:is([data-h2],[data-brief2]) .feature-head .q-mark-big { margin: 0; }
+/* Read with Que 2.0 hero: the laptop becomes a framed product screenshot (Axiom-style); subheading smaller than the headline */
+body[data-h2] .q-hero .lede { font-size: 18px; }
+body[data-h2] .q-laptop { max-width: none; background: #dbe7f2; border-radius: 24px; padding: 40px 40px 0; overflow: hidden; }
+body[data-h2] .q-laptop::after { display: none; }
+body[data-h2] .q-screen { border: 0; border-radius: 14px 14px 0 0; box-shadow: 0 -2px 24px #00182b1f; }
+body[data-h2] .q-hero { padding-bottom: 72px; }
+@media (max-width: 900px) { body[data-h2] .q-laptop { padding: 20px 16px 0; border-radius: 16px; } }
+/* Read with Que 2.0, round 3 (21 Nov) */
+/* hero: no blue, light like the rest of the page */
+body[data-h2] .q-hero { background: var(--white); color: var(--navy); }
+body[data-h2] .q-hero h1 { color: var(--navy); }
+body[data-h2] .q-hero .accent { color: var(--fh-blue); }
+body[data-h2] .q-hero .lede { color: var(--faded); }
+body[data-h2] .q-hero .q-btn-light { background: var(--white); color: var(--navy); border: 1.5px solid var(--line); }
+body[data-h2] .q-hero .q-btn-light:hover { background: var(--surface-blue); }
+/* feature tiles instead of pill toggles */
+.q-tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.q-tiles button { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 18px; border: 1.5px solid var(--line); border-radius: 14px; background: var(--white); color: var(--navy); font: 500 16px var(--sans); text-align: left; cursor: pointer; }
+.q-tiles button svg { width: 24px; height: 24px; flex: none; color: var(--faded); }
+.q-tiles button:hover { border-color: #b9cddc; }
+.q-tiles button[aria-selected="true"] { border-color: var(--navy); background: var(--surface-blue); box-shadow: inset 0 0 0 1px var(--navy); }
+.q-tiles button[aria-selected="true"] svg { color: var(--fh-blue); }
+@media (max-width: 900px) { .q-tiles { grid-template-columns: 1fr 1fr; } }
+/* check-in attempts side by side, so the panel is about as tall as the others */
+body:is([data-h2],[data-brief2]) .q-thread { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+body:is([data-h2],[data-brief2]) .q-thread .q-prompt { grid-column: 1 / -1; }
+body:is([data-h2],[data-brief2]) .q-step { grid-template-columns: 1fr; gap: 10px; align-content: start; }
+body:is([data-h2],[data-brief2]) .q-step::before { display: none; }
+body:is([data-h2],[data-brief2]) .q-stepno { width: 28px; height: 28px; font-size: 14px; }
+@media (max-width: 900px) { body:is([data-h2],[data-brief2]) .q-thread { grid-template-columns: 1fr; } }
+body:is([data-h2],[data-brief2]) .q-tiles { grid-template-columns: repeat(3, 1fr); } @media (max-width: 900px) { body:is([data-h2],[data-brief2]) .q-tiles { grid-template-columns: 1fr; } }
+/* Que 2.0: much fainter frame around the screenshot, like Axiom's */
+body[data-h2] .q-laptop { background: #f4f7fa; border: 1px solid #e8eef3; }
+body:is([data-h2],[data-topics2]) .q-screen { box-shadow: 0 1px 3px #00182b14, 0 8px 24px #00182b0a; border: 1px solid #e8eef3; border-bottom: 0; }
+/* Que 2.0: topics heading as one block, "See all topics" on the same row at the right */
+body:is([data-h2],[data-topics2]) .q-head-row { grid-template-columns: 1fr auto; align-items: end; column-gap: 48px; }
+body:is([data-h2],[data-topics2]) .q-head-row .q-see-all { white-space: nowrap; padding-block: 10px; }
+@media (max-width: 900px) { body:is([data-h2],[data-topics2]) .q-head-row { grid-template-columns: 1fr; } }
+/* Que 2.0: topic cards left-aligned to match the left heading */
+body:is([data-h2],[data-topics2]) .q-topic { text-align: left; align-items: flex-start; padding: 0; }
+body:is([data-h2],[data-topics2]) .q-topic .poster-art { width: 100%; }
+body:is([data-h2],[data-topics2]) .q-head-row .fh { max-width: none; }
+/* Que 2.0: the three formats, one line each, between the heading and the covers */
+body:is([data-h2],[data-topics2]) .q-formats-row { max-width: none; margin: 0 0 40px; border-block: 1px solid var(--line); }
+body:is([data-h2],[data-topics2]) .q-formats-row li { text-align: left; padding: 20px 28px; }
+body[data-h2] .q-formats-row li:first-child { padding-left: 0; }
+body[data-h2] .q-formats-row p { font-size: 16px; margin-top: 4px; }
+@media (max-width: 900px) { body[data-h2] .q-formats-row li { padding: 14px 0; } }
+/* Que 2.0: darker FuturesHub blue so white-on-blue buttons and blue links pass AA (was #0489dc, 3.7:1) */
+body[data-h2] { --fh-blue: #0670b8; }
+/* Que 2.0: Que sits above the hero headline (first mention); the right column drops so its top still meets the headline's */
+/* Que sits beside the "What Que does." heading, not in the hero (it clashed with the FuturesHub logo) */
+body[data-h2] .q-que-row { grid-template-columns: auto 1fr; align-items: center; column-gap: 20px; }
+body[data-h2] .q-que-row .que-mark-lg { width: 76px; margin: 0; }
+/* Que 2.0 feature rows: text block hugs the picture on every row (still left-aligned text); panels the same size on both sides */
+body[data-h2] .q-f-text { max-width: 460px; }
+body[data-h2] .q-f:not(.flip) .q-f-text { justify-self: end; }
+body[data-h2] .q-f.flip { grid-template-columns: 1.15fr 1fr; }
+@media (max-width: 900px) { body[data-h2] .q-f.flip { grid-template-columns: 1fr; } body[data-h2] .q-f:not(.flip) .q-f-text { justify-self: start; } }
+body[data-h2] .q-f-text { width: min(460px, 100%); } /* same width on every row, so left edges line up */
+/* Que 2.0: the two brief tiles fill the row */
+body:is([data-h2],[data-brief2]) .q-tiles { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 600px) { body:is([data-h2],[data-brief2]) .q-tiles { grid-template-columns: 1fr; } }
+/* ---- Que 2.0, 21 Nov round: hero check-in spacing, 44px samples, 2x2 features, light closing, labels, current nav ---- */
+/* hero screenshot: shorter picture, no trailing paragraph, so both columns end together */
+body[data-h2] .q-topic-cta .btn { min-height: 44px; }
+/* light closing, navy footer follows */
+body[data-h2] .closing { background: var(--white); color: var(--navy); }
+body[data-h2] .closing .accent { color: var(--fh-blue); }
+body[data-h2] .closing .lede { color: var(--faded); }
+body[data-h2] .closing .btn-ghost { color: var(--navy); border-color: var(--line); }
+/* small labels at least 13px */
+body[data-h2] .q-illus, body[data-h2] .qtag, body[data-h2] .q-app-que .qtag { font-size: 13px; }
+/* nav: where you are */
+body[data-h2] .menu > button[aria-current="page"] { color: var(--navy); box-shadow: inset 0 -2px 0 var(--teal); border-radius: 0; }
+/* Que 2.0: the FuturesHub logo is baked into the top of each cover image; crop that strip off (titles sit at the bottom) */
+body[data-h2] .q-topic .poster-art { aspect-ratio: 0.88; }
+body[data-h2] .q-topic .poster-art img { object-position: 50% 100%; }
+/* hero chat: roomier bubbles so the Que column matches the full-size brief (text wraps to ~3 lines) */
+body[data-h2] .q-app-que { gap: 14px; padding: 22px; }
+body[data-h2] .q-app-que .bubble { padding: 16px 20px; font-size: 18px; line-height: 1.55; }
+body[data-h2] .q-app-que .bubble.me { max-width: 80%; }
+body[data-h2] .q-app-input { padding: 14px 18px; }
+/* Que 2.0 hero chat: real chat bubbles (Que left and tinted, student right and solid, tails on the speaker's side) */
+body[data-h2] .q-app-que .bubble { width: fit-content; max-width: 86%; border: 0; border-radius: 22px 22px 22px 6px; background: var(--surface-blue); color: var(--navy); }
+body[data-h2] .q-app-que .bubble.me { align-self: flex-end; max-width: 80%; border-radius: 22px 22px 6px 22px; background: var(--fh-blue); color: var(--white); }
+body[data-h2] .q-app-que .bubble.fb { border-left: 0; }
+/* original Que page: topics heading left-aligned, See all topics at the top right */
+.q-topics-head { display: grid; grid-template-columns: 1fr auto; align-items: end; column-gap: 48px; margin-bottom: 40px; }
+.q-topics-head .section-head { margin-bottom: 0; max-width: 760px; }
+.q-topics-head .q-see-all { white-space: nowrap; }
+@media (max-width: 700px) { .q-topics-head { grid-template-columns: 1fr; row-gap: 8px; } }
+body[data-topics2] .q-topic-cta .btn { min-height: 44px; }
+/* Que 2.0 hero: the three offerings carry the page; Que is the helper */
+body[data-h2] .q-formats-hero { margin: 56px 0 0; border-block: 1px solid var(--line); }
+body[data-h2] .q-formats-hero li { padding: 32px 32px 36px; }
+body[data-h2] .q-formats-hero li:first-child { padding-left: 0; }
+body[data-h2] .q-formats-hero .q-fmt { font-size: 30px; line-height: 1.15; }
+body[data-h2] .q-formats-hero p { font-size: 18px; margin-top: 10px; max-width: 28ch; }
+body[data-h2] .q-hero { padding-bottom: 64px; }
+@media (max-width: 900px) { body[data-h2] .q-formats-hero { margin-top: 32px; } body[data-h2] .q-formats-hero li { padding: 20px 0; } body[data-h2] .q-formats-hero .q-fmt { font-size: 24px; } }
+/* Que 2.0 hero: page label matching the nav link, above the headline across both columns */
+body[data-h2] .q-hero-text .q-eyebrow { grid-column: 1 / -1; margin: 0; font: 500 15px var(--sans); letter-spacing: .08em; text-transform: uppercase; color: var(--faded); }
+body[data-h2] .q-hero-text { row-gap: 0; }
+@media (max-width: 900px) { body[data-h2] .q-hero-text { row-gap: 20px; } }
+/* Que 2.0: browse by format (default) or by topic. Both views share one grid cell so the section keeps its height */
+body[data-h2] .q-hero { padding-bottom: 72px; }
+body[data-h2] .q-viewbar { display: flex; align-items: center; gap: 24px; justify-content: flex-end; }
+body[data-h2] .q-seg { display: inline-flex; padding: 4px; gap: 4px; border: 1.5px solid #b9cddc; border-radius: 999px; background: var(--white); }
+body[data-h2] .q-seg button { font: 500 15px var(--sans); min-height: 44px; padding: 0 20px; border: 0; border-radius: 999px; background: none; color: var(--navy); cursor: pointer; }
+body[data-h2] .q-seg button[aria-selected="true"] { background: var(--navy); color: var(--white); }
+body[data-h2] .q-seg button:not([aria-selected="true"]):hover { background: var(--surface-blue); }
+body[data-h2] .q-views { display: grid; }
+body[data-h2] .q-view { grid-area: 1 / 1; }
+body[data-h2] .q-view.is-off { visibility: hidden; pointer-events: none; }
+body[data-h2] .q-topics-3 { grid-template-columns: repeat(3, 1fr); }
+body[data-h2] .q-fline { font-size: 17px; color: var(--faded); margin: 0; max-width: 30ch; }
+@media (max-width: 900px) { body[data-h2] .q-viewbar { justify-content: flex-start; flex-wrap: wrap; } body[data-h2] .q-topics-3 { grid-template-columns: 1fr; } }
+/* By format and by topic share the same 3-column layout and cover size, so switching never moves anything (covers stay at 0.88 so the logo strip stays cropped) */
+body[data-h2] .q-topics-3 h3 { font-size: 28px; }
+/* cards keep their natural height: the button sits right under the title (no stretching to match the other view) */
+body[data-h2] .q-view .q-topics { align-items: start; }
+body[data-h2] .q-view .q-topic-cta { margin-top: 0; }
+/* by format: three cards with covers at the same size as by topic's four, so the section stays compact */
+body[data-h2] .q-topics-3 .poster-art { width: 73%; }
+/* Que 2.0: covers at their full 3:4 height, no crop (the FuturesHub mark on the artwork is visible again) */
+body[data-h2] .q-topic .poster-art { aspect-ratio: 3 / 4; }
+/* Que 2.0 hero screenshot: a QueBook chapter with a Que check-in, in the same light frame as before */
+body[data-h2] .q-hero .hero-preview { margin: 56px 0 0; background: #f4f7fa; border: 1px solid #e8eef3; }
+body[data-h2] .q-hero .hp-app { border: 1px solid #e8eef3; border-bottom: 0; box-shadow: 0 1px 3px #00182b14, 0 8px 24px #00182b0a; }
+/* Que 2.0 hero screenshot: Foundations of Data Driven Thinking, Ch. 1 (taller, chat-style Que) */
+body[data-h2] .q-shot .hp-body { min-height: 470px; }
+body[data-h2] .q-shot .hp-read { gap: 20px; align-content: start; }
+body[data-h2] .hp-quote { margin: 0; font: 600 26px/1.35 var(--display); color: var(--navy); }
+body[data-h2] .hp-cap { font: 500 15px var(--sans); color: var(--faded); letter-spacing: .04em; text-transform: uppercase; margin: 8px 0 -6px; }
+body[data-h2] .hp-matrix { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+body[data-h2] .hp-matrix div { display: grid; gap: 6px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); }
+body[data-h2] .hp-matrix span { font-size: 14px; color: var(--faded); }
+body[data-h2] .hp-matrix strong { font: 600 20px/1.2 var(--display); color: var(--navy); }
+body[data-h2] .hp-chat { gap: 14px; padding: 28px 32px; }
+body[data-h2] .hp-chat .qhead { display: flex; align-items: center; gap: 10px; }
+body[data-h2] .hp-bub { width: fit-content; max-width: 88%; padding: 16px 20px; font-size: 18px; line-height: 1.5; border-radius: 22px 22px 22px 6px; background: var(--surface-blue); color: var(--navy); }
+body[data-h2] .hp-bub.me { align-self: end; justify-self: end; border-radius: 22px 22px 6px 22px; background: var(--fh-blue); color: var(--white); }
+body[data-h2] .hp-bub.fb { background: #e6f4f0; }
+
+/* Que 2.0 hero: right column is exactly as tall as the headline (text on top, buttons level with the headline's last line) */
+body[data-h2] .q-hero-text { align-items: stretch; }
+body[data-h2] .q-hero-side { margin-top: 5px; margin-bottom: 12px; display: flex; flex-direction: column; justify-content: space-between; gap: 8px; }
+@media (max-width: 900px) { body[data-h2] .q-hero-side { margin-bottom: 0; } }
+/* format cards: same 4-column slots as by topic (the first three line up exactly), bigger description */
+body[data-h2] .q-fline { font: 500 20px/1.4 var(--sans); color: #2f4a60; max-width: none; }
+body[data-h2] .q-ffact { font-size: 15px; color: var(--faded); margin: 0; }
+
+
+/* Que 2.0: primary buttons one flat colour (no gradient); darker green so white text passes AA */
+body[data-h2] .btn-primary { background: #0b7f6d; box-shadow: none; }
+body[data-h2] .btn-primary:hover { background: var(--navy); }
+/* hero screenshot: cover banner on top of the chapter; Que's chat sits at the bottom of its column */
+body[data-h2] .hp-cover { width: 100%; aspect-ratio: 16 / 7; object-fit: cover; object-position: 50% 38%; border-radius: 12px; display: block; }
+body[data-h2] .q-shot .hp-body { min-height: 0; }
+body[data-h2] .hp-chat { align-content: end; }
+
+/* hero screenshot: cover banner spans the chapter; text and Que's chat start level below it */
+body[data-h2] .hp-cover { width: 100%; aspect-ratio: 5 / 1; object-fit: cover; object-position: 50% 40%; border-radius: 0; display: block; }
+body[data-h2] .hp-chat { align-content: start; }
+/* same card structure in both views: label, title, description */
+body[data-h2] .q-fline { font: 500 18px/1.45 var(--sans); color: #2f4a60; }
+/* Strong and weak answers (both pages): plain labels, standard chat bubbles, first/second/third attempt appear in turn */
+body:is([data-h2],[data-brief2]) .q-thread .q-prompt { background: none; border: 0; padding: 0; }
+body:is([data-h2],[data-brief2]) .q-thread .q-prompt p { margin: 0; font: 600 24px/1.3 var(--display); color: var(--navy); }
+body:is([data-h2],[data-brief2]) .q-step { display: grid; grid-template-columns: 1fr; gap: 10px; align-content: start; animation: q-in .25s ease-out both; animation-delay: calc(var(--i) * .9s); }
+body:is([data-h2],[data-brief2]) .q-step .q-k { margin: 0; }
+body:is([data-h2],[data-brief2]) .q-ans, body:is([data-h2],[data-brief2]) .q-rep { padding: 14px 16px 16px; border-radius: 10px; display: grid; gap: 6px; }
+body:is([data-h2],[data-brief2]) .q-ans { background: #fff; border: 1px solid #cdd9e4; }
+body:is([data-h2],[data-brief2]) .q-rep { background: #eaf1f8; border: 1px solid transparent; }
+body:is([data-h2],[data-brief2]) .q-rep.win { background: #e6f4f0; }
+body:is([data-h2],[data-brief2]) .q-ans p, body:is([data-h2],[data-brief2]) .q-rep p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--navy); }
+body:is([data-h2],[data-brief2]) .q-by { display: flex; align-items: center; gap: 8px; font: 500 14px var(--sans); color: var(--faded); }
+body:is([data-h2],[data-brief2]) .q-mark-mini { width: 28px; height: auto; margin: 0; }
+@keyframes q-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { body:is([data-h2],[data-brief2]) .q-step { animation: none; } }
+
+/* every card reserves three lines of description, so the Try a sample buttons sit on one line in both views */
+body[data-h2] .q-view .q-fline { min-height: 0; }
+
+
+/* attempts: one row per part (label / answer / reply) shared by all three columns, so the boxes line up across attempts */
+body:is([data-h2],[data-brief2]) .q-thread { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: auto auto 1fr; column-gap: 24px; row-gap: 10px; }
+body:is([data-h2],[data-brief2]) .q-step { grid-row: 1 / span 3; grid-template-rows: subgrid; row-gap: 10px; }
+@media (max-width: 800px) { body:is([data-h2],[data-brief2]) .q-thread { grid-template-columns: 1fr; grid-template-rows: none; } body:is([data-h2],[data-brief2]) .q-step { grid-row: auto; grid-template-rows: none; } }
+
+/* the three Inside a QueBrief panes land close in height: tighter answers, roomier perspectives and claims */
+body:is([data-h2],[data-brief2]) .q-ans, body:is([data-h2],[data-brief2]) .q-rep { align-content: start; }
+body:is([data-h2],[data-brief2]) .q-claims { gap: 16px; }
+body:is([data-h2],[data-brief2]) .q-claims li { padding: 18px 20px; }
+@media (min-width: 901px) { body:is([data-h2],[data-brief2]) #feat-2 .q-ring { min-height: 280px; grid-template-rows: repeat(3, 1fr); } }
+
+/* perspectives: the selected button already names the speaker, so no byline; the quote sits in the middle of its box */
+body:is([data-h2],[data-brief2]) .q-hub { align-content: center; }
+
+/* one action colour: teal = do this now. Try a sample is a quiet outline; icons for the stakeholders match the tab icons */
+body[data-h2] .btn-check { background: var(--white); color: var(--navy); border-color: #9db3c6; }
+body[data-h2] .btn-check:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+body[data-h2] .q-av { color: var(--navy); }
+body[data-h2] .q-who[aria-selected="true"] .q-av { color: var(--fh-blue); }
+/* every button 44px tall or more */
+body[data-h2] .btn, body[data-h2] .header .actions .btn { min-height: 44px; }
+
+/* What Que does: about 20% less vertical padding, and wider demo cards so the panels hold more and the text side feels less empty */
+body[data-h2] .q-f { padding-block: 24px; gap: 48px; }
+body[data-h2] .q-f-panel { padding: 40px 8%; }
+body[data-h2] .q-meet-head { margin-bottom: 32px; }
+@media (max-width: 900px) { body[data-h2] .q-f-panel { padding: 28px 6%; } }
+
+/* whole cards clickable: the button's link stretches over the card; cover lifts and the button fills on hover */
+body[data-h2] .q-topic { position: relative; cursor: pointer; }
+body[data-h2] .q-topic-cta .btn { position: static; }
+body[data-h2] .q-topic-cta .btn::after { content: ""; position: absolute; inset: 0; border-radius: 10px; }
+body[data-h2] .q-topic .poster-art { transition: transform .25s ease, box-shadow .25s ease; }
+body[data-h2] .q-topic:hover .poster-art { transform: translateY(-4px); box-shadow: 0 16px 30px #00305240; }
+body[data-h2] .q-topic:hover .btn-check { background: var(--navy); color: var(--white); border-color: var(--navy); }
+body[data-h2] .q-topic-cta .btn:focus-visible::after { outline: 3px solid var(--fh-blue); outline-offset: 2px; }
+/* numbered feature rows */
+body[data-h2] .q-f-text p strong { color: var(--navy); font-weight: 600; }
+body[data-h2] .lede strong, body[data-h2] .closing .lede strong { color: var(--navy); font-weight: 600; }
+/* Equitech Futures "Ventures" pattern: one off-white page with one light-to-dark switch at "In every read" */
+body[data-h2] { background: var(--surface); transition: background-color .25s ease; }
+body[data-h2] .q-hero, body[data-h2] .section, body[data-h2] .section-alt, body[data-h2] .q-meet { background: transparent; }
+/* numbered feature rows: the number sits on the heading's line */
+body[data-h2] .q-num { display: inline-block; margin-right: 14px; font: 600 16px var(--sans); letter-spacing: .12em; color: var(--teal-text); vertical-align: .35em; }
+/* light <-> dark switch (body.q-dark, set by queWire while "In every read" is in the middle of the screen) */
+body[data-h2].q-dark { background: var(--q-dark, #0a1a2f); }
+body[data-h2] #brief .fh, body[data-h2] #brief .fh strong, body[data-h2] #brief .muted{ transition: color .25s ease; }
+body[data-h2].q-dark #brief .fh { color: #a9c0d6; }
+body[data-h2].q-dark #brief .fh strong { color: #ffffff; }
+body[data-h2].q-dark #brief .muted, body[data-h2].q-dark #brief .muted strong { color: #c4d4e3; }
+body[data-h2].q-dark #brief .q-illus { color: #c4d4e3; border-color: #c4d4e3; }
+body[data-h2].q-dark #brief .q-who::after { border-top-color: #ffffff33; }
+body[data-h2].q-dark #brief .q-who[aria-selected="true"]::after { border-top-color: #3cc5a5; }
+body[data-h2].q-dark #brief .q-tiles button[aria-selected="true"] { box-shadow: inset 0 0 0 2px #3cc5a5; }
+@media (prefers-reduced-motion: reduce) { body[data-h2], body[data-h2] #brief .fh { transition: none; } }
+/* the header stays white when the page goes dark, so the two reverse (like Equitech's light/dark swap) */
+/* tighter gap under the hero picture (was 72px + 80px) */
+body[data-h2] .q-hero { padding-bottom: 32px; }
+body[data-h2] #topics { padding-top: 48px; }
+/* closing: a white band after the navy widgets */
+body[data-h2] .closing { background: #ffffff; padding-block: 56px; }
+/* tighter rhythm between sections (was 80px top and bottom, so 160px gaps) */
+body[data-h2] #topics { padding-block: 48px 56px; }
+body[data-h2] #meet { padding-block: 56px; }
+body[data-h2] #brief { padding-block: 64px; }
+body[data-h2] .q-meet-head, body[data-h2] #topics .feature-head { margin-bottom: 32px; }
+/* the switch now starts while the last Que feature is still on screen, so that row's text turns white too */
+body[data-h2] #meet .q-f-text h3, body[data-h2] #meet .q-f-text p, body[data-h2] #meet .q-f-text p strong, body[data-h2] #meet .q-num, body[data-h2] #meet .fh, body[data-h2] #meet .fh strong { transition: color .25s ease; }
+body[data-h2].q-dark #meet .q-f-text h3, body[data-h2].q-dark #meet .q-f-text p strong, body[data-h2].q-dark #meet .fh strong { color: #ffffff; }
+body[data-h2].q-dark #meet .q-f-text p, body[data-h2].q-dark #meet .fh { color: #c4d4e3; }
+body[data-h2].q-dark #meet .q-num { color: #5fd3b8; }
+/* trimmed hero picture (was ~733px tall): thinner banner strip, tighter frame, smaller quote and matrix */
+body[data-h2] .q-hero .hero-preview { margin-top: 40px; padding: 24px 24px 0; }
+body[data-h2] .hp-cover { aspect-ratio: 8 / 1; }
+body[data-h2] .q-shot .hp-read { padding: 24px 28px 28px; gap: 14px; }
+body[data-h2] .hp-quote { font-size: 21px; }
+body[data-h2] .hp-matrix { gap: 10px; }
+body[data-h2] .hp-matrix div { padding: 10px 14px; gap: 2px; border-radius: 12px; }
+body[data-h2] .hp-matrix span { font-size: 13px; }
+body[data-h2] .hp-matrix strong { font-size: 17px; }
+body[data-h2] .q-shot .hp-chat { padding: 22px 28px; }
+/* smaller Que mark above "What Que does" (was 168px wide) */
+body[data-h2] #meet .q-mark-big { width: 112px; }
+body[data-h2] .q-shot .hp-chat { gap: 10px; }
+body[data-h2] .q-shot .hp-bub { font-size: 15px; line-height: 1.45; padding: 10px 16px; }
+/* "Proposed" badge on the same line as the check-in question, so this pane is no taller than the others */
+body[data-h2] #brief p.muted:has(> .q-illus) { max-width: none; }
+body[data-h2] #brief p.muted > .q-illus { white-space: nowrap; margin-left: 10px; }
