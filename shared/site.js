@@ -208,7 +208,9 @@ const mockbar = (v) => document.body.dataset.pair ? `
     <strong>${location.pathname.includes('/equitech/') ? '<a class="mock-home" href="./">← Overview</a>' : 'Mockup'}</strong>
     <nav aria-label="Pages">${PAIR.map(([k, l]) => `<a href="${k}.html"${/\/[^/]+$/.test(location.pathname) && location.pathname.replace(/\.html$/, '').endsWith(`/${k}`) ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>
     ${chgBtn()}
-  </div></div>` : `
+    <span class="lap-chip">Laptop view only</span>
+  </div>
+  <p class="lap-banner" role="note">This mockup is built for laptop screens and isn't optimised for phones. For the intended view, open it on a laptop.</p></div>` : `
   <div class="mockbar"><div class="wrap">
     <strong>Mockup</strong>
     <nav aria-label="Landing page versions">${[['1', 'LP1 · Cards'], ['2', 'LP2 · Quill'], ['quill-2', 'Quill 2.0'], ['quill-3', 'Quill 3.0'], ['quill-4', 'Quill 4.0'], ['quill-5', 'Quill 5.0'], ['quill-6', 'FuturesHub landing page'], ['4', 'LP4 · Topics'], ['5', 'LP5 · Research'], ['6', 'LP6 · Brilliant'], ['7', 'LP7 · Posters'], ['8', 'LP8 · Favourites'], ['ideas', 'Thumbnail ideas'], ['que-2', 'Read with Que']].map(([k, l]) => `<a href="${k.length > 1 ? k : `lp${k}`}.html"${(Q3 ? location.pathname.endsWith(`/${k}.html`) : Q2 ? k === 'quill-2' : document.body.dataset.h2 ? k === 'que-2' : LP === k) ? ' aria-current="page"' : ''}>${l}</a>`).join('')}</nav>
