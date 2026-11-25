@@ -31,3 +31,9 @@ a, button { transition: color .2s, background-color .2s, border-color .2s, opaci
 .mockbar .lap-chip { margin-left: auto; color: #cdcfcf; font-size: 13px; padding: 3px 10px; border: 1px solid #ffffff40; border-radius: var(--r-round); white-space: nowrap; }
 .mockbar .lap-banner { display: none; margin: 0; max-width: none; padding: 10px 16px; background: #ffffff1f; color: var(--surface); font-size: 14px; line-height: 1.4; }
 @media (max-width: 900px) { .mockbar .lap-banner { display: block; } .mockbar .lap-chip { margin-left: 0; } }
+.lap-only { display: none; position: fixed; inset: 0; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; gap: 18px; padding: 32px; background: #18181cf2; color: var(--surface); text-align: center; }
+.lap-only svg { width: 72px; color: var(--mint); }
+.lap-only p { max-width: 30ch; line-height: 1.5; }
+.lap-only b { font-size: 1.25rem; }
+.lap-only button { min-height: 46px; padding: 0 22px; border: 0; border-radius: var(--r-round); background: var(--mint); color: var(--ink); font: inherit; font-weight: 600; cursor: pointer; }
+@media (max-width: 700px) { .lap-only:not(.gone) { display: flex; } }

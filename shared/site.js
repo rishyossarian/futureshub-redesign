@@ -1159,3 +1159,14 @@ if (explore && v === 'c') select('data-pick', topicPanel);
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) status('<button type="button" data-auto="play">Watch Que in action</button> or write your own answer.');
   else new IntersectionObserver((es, o) => { if (es[0].isIntersecting) { o.disconnect(); tour(); } }, { threshold: 0.5 }).observe(box.closest('.que-panel'));
 })();
+
+// Laptop-only page on phones (her ask, 25 Nov; same idea as the "turn your phone" card on rishita.net/about): shows on narrow screens until dismissed
+if (document.body.dataset.pair) {
+  document.body.insertAdjacentHTML('beforeend', `<div class="lap-only" id="lap-only" role="dialog" aria-modal="true" aria-labelledby="lap-only-h">
+    <svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><rect x="10" y="4" width="44" height="28" rx="3"/><path d="M3 38h58l-4 4H7z"/></svg>
+    <p><b id="lap-only-h">Best viewed on a laptop</b><br>This mockup is built for laptop screens and isn't optimised for phones. Open it on a laptop for the intended view.</p>
+    <button type="button" id="lap-only-ok">Continue anyway</button></div>`);
+  const lap = document.getElementById('lap-only');
+  document.getElementById('lap-only-ok').addEventListener('click', () => lap.classList.add('gone'));
+  if (matchMedia('(max-width: 700px)').matches) document.getElementById('lap-only-ok').focus();
+}
